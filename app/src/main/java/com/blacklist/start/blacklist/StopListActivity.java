@@ -2,10 +2,12 @@ package com.blacklist.start.blacklist;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -55,5 +57,25 @@ public class StopListActivity extends ListActivity implements AdapterView.OnItem
                 selectedItem + " deleted.",
                 Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    public void onSettingsMenuClick(MenuItem item) {
+        TextView infoTextView = (TextView) findViewById(R.id.textViewInfo);
+        infoTextView.setText("Вы выбрали пункт Settings, лучше бы выбрали кота");
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        TextView infoTextView = (TextView) findViewById(R.id.textViewInfo);
+        int id = item.getItemId();
+        infoTextView.setText("U have selected add phone!");
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
