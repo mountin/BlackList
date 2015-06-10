@@ -7,4 +7,8 @@
     <string name="myList2"><b>Стоп лист</b></string>
     <string name="add_number">Добавить новый телефон</string>
     <string name="action_kitten">action_kitten</string>
+    <string name="newnumber">Добавить новый номер</string>
+    <string name="selectnumber">Укажите новый номер</string>
+    <string name="timeblock">Укажите время для блокировки</string>
+    <string name="addnum">Добавить</string>
 </resources>

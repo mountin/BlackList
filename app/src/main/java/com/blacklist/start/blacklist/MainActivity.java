@@ -7,6 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.activeandroid.query.Select;
+
+import java.util.List;
+
+import model.NumberList;
+import model.User;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -46,6 +54,30 @@ public class MainActivity extends ActionBarActivity {
 
         startActivity(intent);
 
+    }
+
+    public void onClick2(View view) {
+
+        Intent intent = new Intent(MainActivity.this, AddNumberActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void saveToDb(View view) {
+        NumberList Number = new NumberList();
+        Number.number = "8888889900";
+        Number.blockTimeType = 2;
+        Number.save();
+        Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+    }
+
+    public void selectFromDb(View view) {
+        List Numbers = new Select().from(NumberList.class).execute();
+
+        if (Numbers.size()!=0) {
+            Toast.makeText(this, "name: " + Numbers.get(0) + " age: "
+                    + Numbers.get(0), Toast.LENGTH_LONG).show();
+        }
     }
 
 }

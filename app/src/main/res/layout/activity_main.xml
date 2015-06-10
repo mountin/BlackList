@@ -48,6 +48,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="127dp"
         android:longClickable="true"
-        android:onClick="onClick" />
+        android:onClick="onClick2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="показать номера"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
+        android:clickable="true"
+        android:onClick="selectFromDb" />
 
 </RelativeLayout>

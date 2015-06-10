@@ -10,24 +10,38 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.activeandroid.query.Select;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import model.NumberList;
 
 
 public class StopListActivity extends ListActivity implements AdapterView.OnItemLongClickListener {
 
-    final String[] catNamesArray = new String[]{"88888", "567585", "44444",
-            "2222222", "234235623", "000000", "222222", "888444", "56546547",
+    public String[] catNamesArray = new String[]{ "567585", "44444",
             "1111111111", "+38908678432", "+789412456"};
 
     private ArrayAdapter<String> mAdapter;
-    private ArrayList<String> catNamesList = new ArrayList<>(Arrays.asList(catNamesArray));
+    private ArrayList<String> catNamesList;// = new ArrayList<>(Arrays.asList(catNamesArray));
 
+    public ArrayList selectListFromDb() {
+        ArrayList NumberList = new Select().from(model.NumberList.class).execute();
+
+        if (NumberList.size()!=0) {
+            return NumberList;
+        }else
+            return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
+
+        this.catNamesList = this.selectListFromDb();
 
         mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, catNamesList);
@@ -36,11 +50,11 @@ public class StopListActivity extends ListActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_stoplist);
     }
 
+
+
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-//        Toast.makeText(getApplicationContext(),
-//                "Вы выбрали " + (position + 1) + " элемент", Toast.LENGTH_SHORT).show();
 
         Toast.makeText(getApplicationContext(),
                 "you selected " + l.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
@@ -61,8 +75,9 @@ public class StopListActivity extends ListActivity implements AdapterView.OnItem
 
     public void onSettingsMenuClick(MenuItem item) {
         TextView infoTextView = (TextView) findViewById(R.id.textViewInfo);
-        infoTextView.setText("Вы выбрали пункт Settings, лучше бы выбрали кота");
+        infoTextView.setText("Вы выбрали пункт Settings");
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
