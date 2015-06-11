@@ -5,6 +5,8 @@ android {
         config {
             storeFile file('E:/Stuff/android/BlackList/key.jks')
             keyAlias 'alias'
+            keyPassword 'pougogo'
+            storePassword 'pougogo'
         }
     }
     compileSdkVersion 22

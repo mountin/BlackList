@@ -3,14 +3,17 @@ package com.blacklist.start.blacklist;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 
+import java.util.Iterator;
 import java.util.List;
 
 import model.NumberList;
@@ -41,10 +44,22 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, AddNumberActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.action_delete_all) {
+            this.clearTable();
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clearTable() {
+        new Delete().from(NumberList.class).execute();
+        Toast.makeText(this,"Table cleared!",Toast.LENGTH_LONG).show();
     }
 
 
@@ -67,6 +82,7 @@ public class MainActivity extends ActionBarActivity {
         NumberList Number = new NumberList();
         Number.number = "8888889900";
         Number.blockTimeType = 2;
+        Number.unblockedUnixTime = 2;
         Number.save();
         Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
     }
@@ -74,10 +90,20 @@ public class MainActivity extends ActionBarActivity {
     public void selectFromDb(View view) {
         List Numbers = new Select().from(NumberList.class).execute();
 
-        if (Numbers.size()!=0) {
-            Toast.makeText(this, "name: " + Numbers.get(0) + " age: "
-                    + Numbers.get(0), Toast.LENGTH_LONG).show();
+        NumberList retrievedThing = null;
+        Iterator<NumberList> i = Numbers.iterator();
+        if(i.hasNext()){
+            retrievedThing = i.next();
+            Log.d("myApp", "number = " + retrievedThing.number + ", type = " + retrievedThing.blockTimeType);
         }
+
+        Toast.makeText(this, "this is Toast! "
+                , Toast.LENGTH_LONG).show();
+
+//        if (Numbers.size()!=0) {
+//            Toast.makeText(this, "name: " + Numbers.get(0).hashCode() + " age: "
+//                    + Numbers, Toast.LENGTH_LONG).show();
+//        }
     }
 
 }

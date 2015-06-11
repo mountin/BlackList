@@ -11,4 +11,5 @@
     <string name="selectnumber">Укажите новый номер</string>
     <string name="timeblock">Укажите время для блокировки</string>
     <string name="addnum">Добавить</string>
+    <string name="delete_all_numbers">Удалить все номера</string>
 </resources>

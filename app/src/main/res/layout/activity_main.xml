@@ -48,7 +48,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="127dp"
         android:longClickable="true"
-        android:onClick="onClick2" />
+        android:onClick="onClick2"
+        android:clickable="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -60,6 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="47dp"
         android:clickable="true"
-        android:onClick="selectFromDb" />
+        android:onClick="selectFromDb"
+        android:visibility="invisible" />
 
 </RelativeLayout>

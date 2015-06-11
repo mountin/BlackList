@@ -15,7 +15,7 @@ import com.activeandroid.query.Select;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import android.util.Log;
 import model.NumberList;
 
 
@@ -42,15 +42,22 @@ public class StopListActivity extends ListActivity implements AdapterView.OnItem
         //setContentView(R.layout.activity_main);
 
         this.catNamesList = this.selectListFromDb();
-
+    if(this.catNamesList != null){
         mAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, catNamesList);
         setListAdapter(mAdapter);
         getListView().setOnItemLongClickListener(this);
-        setContentView(R.layout.activity_stoplist);
+    }else{
+        Toast.makeText(getApplicationContext(),
+                "The list is Empty, add one please " , Toast.LENGTH_SHORT).show();
     }
 
 
+
+
+        Log.d("myApp", "show string");
+        setContentView(R.layout.activity_stoplist);
+    }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
